@@ -48,7 +48,7 @@ table {
 body {padding: 10px;}
 input {
     background: #FAFBFC;
-    outline: 1px solid;
+    outline: 2px solid;
     outline-color: #DFE1E6;
     border-radius: 3px;
     border:none;
@@ -59,8 +59,7 @@ input {
 }
 input:focus-visible {
     background: white;
-    outline: 1px solid #0065FF;
-    border: 2px solid #0065FF;
+    outline: 2px solid #0065FF;
 }
 
 button{
@@ -73,4 +72,5 @@ button{
 }
 button:hover {
     background: #0747A6;
+    cursor: pointer;
 }
