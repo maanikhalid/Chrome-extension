@@ -74,3 +74,5 @@ button:hover {
     background: #0747A6;
     cursor: pointer;
 }
+ul {display: flex; justify-content: flex-start; flex-direction: column; gap: 10px; padding: 10px 0px;}
+li {width: 100%; padding: 10px; box-shadow: 0 10px 10px rgba(0,0,0,0.1); border-radius: 3px;font-size: 0.8em;box-sizing: border-box;}
