@@ -61,7 +61,8 @@ input:focus-visible {
     background: white;
     outline: 2px solid #0065FF;
 }
-
+.error {outline: 1px solid red;}
+.error::placeholder {color: red;}
 button{
     background: #0065FF;
     border: 2px solid #0065FF;
