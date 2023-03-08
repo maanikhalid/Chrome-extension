@@ -72,6 +72,8 @@ button{
     box-sizing: border-box;
     margin: 10px 0px;
 }
+.delete {border:1px solid red; background: transparent; color: red;}
+.delete:hover {border:1px solid red; background: #FFEBE6; color: #BF2600;}
 button:hover {
     background: #0747A6;
     cursor: pointer;
@@ -80,4 +82,5 @@ ul {display: flex; justify-content: flex-start; flex-direction: column; gap: 10p
 li {width: 100%; box-shadow: 0 5px 10px rgba(0,0,0,0.1); border-radius: 3px;font-size: 0.8em;box-sizing: border-box;}
 li a { padding: 10px;text-decoration: none; color: inherit; box-sizing: border-box; width: 100%;display: inline-block;}
 li a:hover { text-decoration: underline; background:#DEEBFF; color: #172B4D}
-.error-message {font-size: 0.8em;box-sizing: border-box;color: red; padding: 10px 0 0 0px}
+.error-message {font-size: 0.8em;box-sizing: border-box;color: red; background: #FFEBE6; padding: 10px; margin: 10px 0 0 0px}
+.clear-message {color: #006644; background: #E3FCEF; font-size: 0.8em;box-sizing: border-box; padding: 10px; margin: 10px 0 0 0px}
