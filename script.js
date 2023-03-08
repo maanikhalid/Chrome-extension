@@ -16,7 +16,6 @@ inputBtn.addEventListener("click", function(){
         errorMessage.classList.add("error-message")
         errorMessage.textContent = "Please try again"
         inputEl.after(errorMessage)
-        
         inputEl.classList.add("error")
         
     }else{
@@ -41,9 +40,16 @@ function renderLeads () {
     let listItems = ""
     for (i = 0 ; i < myLeads.length ; i++){
         // listItems += "<li><a href='http://"+myLeads[i]+"' target='_blank'>" + myLeads[i] + "</a>" + "</li>"
-        listItems += "<li><a href='http://"+myLeads[i]+"' target='_blank'>" + myLeads[i] + "</a>" + "</li>"
-        
+        listItems += `
+            <li>
+                <a href="http://${myLeads[i]}" target="_blank"> 
+                    ${myLeads[i]}
+                </a>
+            </li>
+            `
     }
 
     ulEl.innerHTML = listItems
 }
+
+
