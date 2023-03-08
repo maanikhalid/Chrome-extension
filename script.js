@@ -1,4 +1,5 @@
 let myLeads = []
+let myLeadTabs = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const clearBtn = document.getElementById("clear-btn")
@@ -6,40 +7,57 @@ const ulEl = document.getElementById("ulEl")
 const errorMessage = document.createElement("div")
 const tabBtn = document.getElementById("save-btn")
 
-const tabs = [
-    {url: "https://www.google.com"}
-]
+
+// console.log(document.title)
+
+     
 
 const leadsLocal = JSON.parse(localStorage.getItem("myLeads"))
+const leadsLocalTabs = JSON.parse(localStorage.getItem("myLeadTabs"))
 
-if (leadsLocal){
+if (leadsLocal && leadsLocalTabs){
     myLeads = leadsLocal
-    render(myLeads)
-}
+    myLeadTabs = leadsLocalTabs
+    render(myLeads, myLeadTabs)
+} 
 
 
-function render(leads) {
+function render(leads, leadTab) {
+
     let listItems = ""
     for (i = 0 ; i < leads.length ; i++){
+        
         listItems += `
-            <li>
-                <a href="http://${leads[i]}" target="_blank"> 
-                    ${leads[i]}
+            <li id="${leadTab[i]}">
+                <a href="${leads[i]}" target="_blank"> 
+              ${leadTab[i]}
                 </a>
             </li>
             `
     }    
     
+    
     ulEl.innerHTML = listItems
-
+  
 }
 
+
 tabBtn.addEventListener("click", function(){
-    console.log(tabs[0].url)
-    myLeads.push(tabs[0].url)
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    render(myLeads)
-    errorMessage.remove()
+    
+   // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {})
+    
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
+        myLeads.push(tabs[0].url)
+        myLeadTabs.push(tabs[0].title)
+        
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        localStorage.setItem("myLeadTabs", JSON.stringify(myLeadTabs))
+        
+        render(myLeads, myLeadTabs)
+        errorMessage.remove()
+        
+    })
+
 })
 
 
@@ -48,7 +66,8 @@ inputEl.placeholder = "Enter text"
 clearBtn.addEventListener("dblclick", function(){
     localStorage.clear()
     myLeads = []
-    render(myLeads)
+    myLeadTabs = []
+    render(myLeads, myLeadTabs)
     errorMessage.classList.add("clear-message")
     errorMessage.classList.remove("error-message")
     errorMessage.textContent = "Leads cleared"
@@ -70,19 +89,33 @@ inputBtn.addEventListener("click", function(){
         inputEl.focus({ focusVisible: true });
         
     }else{
-        
-    myLeads.push(inputEl.value)
-    console.log(myLeads)
+     let urlCheckA = "www."
+     let urlCheckB = "http://www."
+     let urlCheckC = "https://www."
+
+     
+        if(inputEl.value.startsWith(urlCheckA))
+        { 
+          myLeads.push("http://"+inputEl.value)
+        } else if(inputEl.value.startsWith(urlCheckB || urlCheckC)) {
+          myLeads.push(inputEl.value)  
+        } else { myLeads.push("http://www." + inputEl.value)}
+    
+    
+    myLeadTabs.push(inputEl.value)
     inputEl.value = ""
     
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    localStorage.setItem("myLeadTabs", JSON.stringify(myLeadTabs))
         
     errorMessage.textContent = ""
     errorMessage.remove()
     inputEl.classList.remove("error")
-    render(myLeads)
+    render(myLeads, myLeadTabs)
     inputEl.focus({ focusVisible: true });
 
+        
+     
     
    }     
 })

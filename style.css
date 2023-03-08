@@ -79,8 +79,13 @@ button:hover {
     cursor: pointer;
 }
 ul {display: flex; justify-content: flex-start; flex-direction: column; gap: 10px; padding: 10px 0px;}
-li {width: 100%; box-shadow: 0 5px 10px rgba(0,0,0,0.1); border-radius: 3px;font-size: 0.8em;box-sizing: border-box;}
-li a { padding: 10px;text-decoration: none; color: inherit; box-sizing: border-box; width: 100%;display: inline-block;}
-li a:hover { text-decoration: underline; background:#DEEBFF; color: #172B4D}
+li { text-overflow: ellipsis; box-shadow: 0 5px 10px rgba(0,0,0,0.1); border-radius: 3px;font-size: 0.8em;box-sizing: border-box;}
+li a {line-height: 1.2em; padding: 10px;text-decoration: none; color: inherit; box-sizing: border-box; width: 100%;display: inline-block;
+text-overflow: ellipsis; white-space: nowrap;
+    overflow: hidden;}
+li { display: flex; align-items: center; flex-direction: row; justify-content: space-between; padding-right: 20px}
+li a::first-letter {text-transform: capitalize}
+span button {padding:2px 10px; margin: 0;}
+li:hover { text-decoration: underline; background:#DEEBFF; color: #172B4D}
 .error-message {font-size: 0.8em;box-sizing: border-box;color: red; background: #FFEBE6; padding: 10px; margin: 10px 0 0 0px}
 .clear-message {color: #006644; background: #E3FCEF; font-size: 0.8em;box-sizing: border-box; padding: 10px; margin: 10px 0 0 0px}
