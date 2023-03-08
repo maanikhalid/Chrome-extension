@@ -2,6 +2,9 @@ let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ulEl")
+const errorMessage = document.createElement("div")
+
+
 
 inputEl.placeholder = "Enter text"
 
@@ -9,15 +12,20 @@ inputBtn.addEventListener("click", function(){
     
     if (inputEl.value ===""){
         
+        
+        errorMessage.classList.add("error-message")
+        errorMessage.textContent = "Please try again"
+        inputEl.after(errorMessage)
+        
         inputEl.classList.add("error")
-        inputEl.placeholder = "Error: type something"
         
     }else{
         
     myLeads.push(inputEl.value)
     console.log(myLeads)
     inputEl.value = ""
-    inputEl.placeholder = "Enter text"
+    errorMessage.textContent = ""
+    errorMessage.remove()
     inputEl.classList.remove("error")
     renderLeads()
    }     
